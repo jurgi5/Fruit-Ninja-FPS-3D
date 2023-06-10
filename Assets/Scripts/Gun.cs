@@ -42,9 +42,22 @@ public class Gun : MonoBehaviour
 
     public ParticleSystem explosionParticles;
 
+    public ParticleSystem impactParticlesPrefab;
+
+    public TMP_Text timerText;
+    private float timer = 0f;
+    private bool isTimerRunning = false;
+
     void Start()
     {
         UpdateScoreText();
+        StartTimer();
+
+        if (isTimerRunning)
+        {
+            timer += Time.deltaTime;
+            UpdateTimerText();
+        }
     }
 
     void Update()
@@ -55,6 +68,13 @@ public class Gun : MonoBehaviour
             Invoke(nameof(TurnOffMuzzleFlash), 0.05f);           
             gunSource.PlayOneShot(gunShotSound);
             Shoot();
+        }
+
+
+        if (isTimerRunning)
+        {
+            timer += Time.unscaledDeltaTime;
+            UpdateTimerText();
         }
     }
 
@@ -125,6 +145,12 @@ public class Gun : MonoBehaviour
                     StartCoroutine(LoadNextSceneWithDelay());
                 }
             }
+
+            else
+            {
+                ParticleSystem impactParticles = Instantiate(impactParticlesPrefab, hit.point, Quaternion.identity);
+                Destroy(impactParticles.gameObject, 5f);
+            }
         }
     }
 
@@ -150,6 +176,21 @@ public class Gun : MonoBehaviour
     public void TurnOffMuzzleFlash()
     {
         muzzleFlash.SetActive(false);
+    }
+
+    void UpdateTimerText()
+    {
+        timerText.text = "Time: " + timer.ToString("F2") + "s";
+    }
+
+    void StartTimer()
+    {
+        isTimerRunning = true;
+    }
+
+    void StopTimer()
+    {
+        isTimerRunning = false;
     }
 
 
