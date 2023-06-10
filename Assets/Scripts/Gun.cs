@@ -15,8 +15,12 @@ public class Gun : MonoBehaviour
 
     public GameObject muzzleFlash;
 
-    public AudioSource source;
+    public AudioSource gunSource;
     public AudioClip gunShotSound;
+
+    public AudioSource spawnsSource;
+    public AudioClip fruitSplashSound;
+    public AudioClip bombExplodeSound;
 
     public float shootingRange = 100f;
 
@@ -36,7 +40,7 @@ public class Gun : MonoBehaviour
         {
             muzzleFlash.SetActive(true);
             Invoke(nameof(TurnOffMuzzleFlash), 0.05f);           
-            source.PlayOneShot(gunShotSound);
+            gunSource.PlayOneShot(gunShotSound);
             Shoot();
         }
     }
@@ -50,6 +54,7 @@ public class Gun : MonoBehaviour
         {
             if (hit.collider.CompareTag("Fruit"))
             {
+                spawnsSource.PlayOneShot(fruitSplashSound);
                 Destroy(hit.collider.gameObject);
                 score++;
                 UpdateScoreText();
@@ -57,6 +62,7 @@ public class Gun : MonoBehaviour
 
             else if (hit.collider.CompareTag("Bomb"))
             {
+                spawnsSource.PlayOneShot(bombExplodeSound);
                 Destroy(hit.collider.gameObject);
                 bombShootCount++;
                 DisableAllBombImages();

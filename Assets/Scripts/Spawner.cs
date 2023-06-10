@@ -9,6 +9,9 @@ public class Spawner : MonoBehaviour
     public GameObject bombPrefab;
     [Range(0f, 1f)] public float bombChance = 0.05f;
 
+    public AudioSource spawnerSource;
+    public AudioClip spawnSound;
+
     public float minSpawnDelay = 0.25f;
     public float maxSpawnDelay = 1f;
 
@@ -56,6 +59,7 @@ public class Spawner : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(0f, 0f, Random.Range(minAngle, maxAngle));
 
             GameObject fruit = Instantiate(prefab, position, rotation);
+            spawnerSource.PlayOneShot(spawnSound);
             Destroy(fruit, maxLifetime);
 
             float force = Random.Range(minForce, maxForce);
