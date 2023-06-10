@@ -16,6 +16,8 @@ public class Gun : MonoBehaviour
 
     public GameObject muzzleFlash;
 
+    public GameObject spawner;
+
     public AudioSource gunSource;
     public AudioClip gunShotSound;
 
@@ -24,6 +26,8 @@ public class Gun : MonoBehaviour
     public AudioClip bombExplodeSound;
 
     public float shootingRange = 100f;
+
+    public float delayBeforeNextScene = 3f;
 
     private int score = 0;
     private int bombShootCount = 0;
@@ -54,7 +58,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void Shoot()
+    async void Shoot()
     {
         Ray ray = Camera.main.ScreenPointToRay(crosshair.transform.position);
         RaycastHit hit;
@@ -117,10 +121,17 @@ public class Gun : MonoBehaviour
                 else if (bombShootCount == 3)
                 {
                     image3RedCross0Empty.SetActive(true);
-                    SceneManager.LoadScene(2);
+                    spawner.SetActive(false);
+                    StartCoroutine(LoadNextSceneWithDelay());
                 }
             }
         }
+    }
+
+    IEnumerator LoadNextSceneWithDelay()
+    {
+        yield return new WaitForSeconds(delayBeforeNextScene);
+        SceneManager.LoadScene(2);
     }
 
     void UpdateScoreText()
