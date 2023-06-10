@@ -68,23 +68,28 @@ public class Gun : MonoBehaviour
 
                 if (hit.collider.gameObject.tag == "Apple")
                 {
-                    Instantiate(appleJuice, hit.transform.position, Quaternion.identity);
+                    ParticleSystem appleParticles = Instantiate(appleJuice, hit.transform.position, Quaternion.identity);
+                    Destroy(appleParticles.gameObject, 5f);
                 }
                 else if (hit.collider.gameObject.tag == "Strawberry")
                 {
-                    Instantiate(strawberryJuice, hit.transform.position, Quaternion.identity);
+                    ParticleSystem strawberryParticles = Instantiate(strawberryJuice, hit.transform.position, Quaternion.identity);
+                    Destroy(strawberryParticles.gameObject, 5f);
                 }
                 else if (hit.collider.gameObject.tag == "Peach")
                 {
-                    Instantiate(peachJuice, hit.transform.position, Quaternion.identity);
+                    ParticleSystem peachParticles = Instantiate(peachJuice, hit.transform.position, Quaternion.identity);
+                    Destroy(peachParticles.gameObject, 5f);
                 }
                 else if (hit.collider.gameObject.tag == "Pear")
                 {
-                    Instantiate(pearJuice, hit.transform.position, Quaternion.identity);
+                    ParticleSystem pearParticles = Instantiate(pearJuice, hit.transform.position, Quaternion.identity);
+                    Destroy(pearParticles.gameObject, 5f);
                 }
                 else if (hit.collider.gameObject.tag == "Lemon")
                 {
-                    Instantiate(lemonJuice, hit.transform.position, Quaternion.identity);
+                    ParticleSystem lemonParticles = Instantiate(lemonJuice, hit.transform.position, Quaternion.identity);
+                    Destroy(lemonParticles.gameObject, 5f);
                 }
 
 
