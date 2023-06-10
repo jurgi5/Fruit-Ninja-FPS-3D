@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using static UnityEngine.ParticleSystem;
 
 public class Gun : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class Gun : MonoBehaviour
 
     public TMP_Text scoreText;
 
+    public ParticleSystem appleJuice;
+    public ParticleSystem strawberryJuice;
+    public ParticleSystem peachJuice;
+    public ParticleSystem pearJuice;
+    public ParticleSystem lemonJuice;
+
     void Start()
     {
         UpdateScoreText();
@@ -52,12 +59,35 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, shootingRange))
         {
-            if (hit.collider.CompareTag("Fruit"))
+            if (hit.collider.CompareTag("Apple") || hit.collider.CompareTag("Strawberry") || hit.collider.CompareTag("Peach") || hit.collider.CompareTag("Pear") || hit.collider.CompareTag("Lemon"))
             {
                 spawnsSource.PlayOneShot(fruitSplashSound);
                 Destroy(hit.collider.gameObject);
                 score++;
                 UpdateScoreText();
+
+                if (hit.collider.gameObject.tag == "Apple")
+                {
+                    Instantiate(appleJuice, hit.transform.position, Quaternion.identity);
+                }
+                else if (hit.collider.gameObject.tag == "Strawberry")
+                {
+                    Instantiate(strawberryJuice, hit.transform.position, Quaternion.identity);
+                }
+                else if (hit.collider.gameObject.tag == "Peach")
+                {
+                    Instantiate(peachJuice, hit.transform.position, Quaternion.identity);
+                }
+                else if (hit.collider.gameObject.tag == "Pear")
+                {
+                    Instantiate(pearJuice, hit.transform.position, Quaternion.identity);
+                }
+                else if (hit.collider.gameObject.tag == "Lemon")
+                {
+                    Instantiate(lemonJuice, hit.transform.position, Quaternion.identity);
+                }
+
+
             }
 
             else if (hit.collider.CompareTag("Bomb"))
