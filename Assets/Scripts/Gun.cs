@@ -36,6 +36,8 @@ public class Gun : MonoBehaviour
     public ParticleSystem pearJuice;
     public ParticleSystem lemonJuice;
 
+    public ParticleSystem explosionParticles;
+
     void Start()
     {
         UpdateScoreText();
@@ -100,6 +102,8 @@ public class Gun : MonoBehaviour
                 spawnsSource.PlayOneShot(bombExplodeSound);
                 Destroy(hit.collider.gameObject);
                 bombShootCount++;
+                ParticleSystem bombParticles = Instantiate(explosionParticles, hit.transform.position, Quaternion.identity);
+                Destroy(bombParticles.gameObject, 4f);
                 DisableAllBombImages();
 
                 if (bombShootCount == 1)

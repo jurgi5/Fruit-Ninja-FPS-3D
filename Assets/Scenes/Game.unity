@@ -3304,6 +3304,12 @@ MonoBehaviour:
   bombExplodeSound: {fileID: 8300000, guid: 380b6ce0acebbec45a1ff831192bfd88, type: 3}
   shootingRange: 100
   scoreText: {fileID: 906718093}
+  appleJuice: {fileID: 3456965596842696455, guid: 3a957ea4b7c394b40bf99db0cee085f4, type: 3}
+  strawberryJuice: {fileID: 3743856710153373845, guid: 97a10daa1478b3e4f898f1093960dadc, type: 3}
+  peachJuice: {fileID: 103387373121996624, guid: 538c577ef7f9c1645ba98a63601b0c04, type: 3}
+  pearJuice: {fileID: 7523292854878990209, guid: 179edf0cb56a01b41bb28e8e99876c62, type: 3}
+  lemonJuice: {fileID: 6068776556951851616, guid: 53f2bec420b784041aa4be56bcac2796, type: 3}
+  explosionParticles: {fileID: 4855211828642977510, guid: aed12c224fbc8704d8eaa07a52e88f44, type: 3}
 --- !u!4 &1308105770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 494328, guid: 8b5fb1ec135dadf4693b6aca9777af6a, type: 3}

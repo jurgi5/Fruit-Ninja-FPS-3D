@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 
     public GameObject[] fruitPrefabs;
     public GameObject bombPrefab;
-    [Range(0f, 1f)] public float bombChance = 0.05f;
+    [Range(0f, 1f)] public float bombChance = 0.25f;
 
     public AudioSource spawnerSource;
     public AudioClip spawnSound;

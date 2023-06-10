@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Fruit
   - Bomb
+  - Strawberry
+  - Apple
+  - Lemon
+  - Peach
+  - Pear
   layers:
   - Default
   - TransparentFX
