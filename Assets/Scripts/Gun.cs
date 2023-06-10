@@ -13,6 +13,11 @@ public class Gun : MonoBehaviour
     public GameObject image2RedCross1Empty;
     public GameObject image3RedCross0Empty;
 
+    public GameObject muzzleFlash;
+
+    public AudioSource source;
+    public AudioClip gunShotSound;
+
     public float shootingRange = 100f;
 
     private int score = 0;
@@ -29,6 +34,9 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            muzzleFlash.SetActive(true);
+            Invoke(nameof(TurnOffMuzzleFlash), 0.05f);           
+            source.PlayOneShot(gunShotSound);
             Shoot();
         }
     }
@@ -82,4 +90,11 @@ public class Gun : MonoBehaviour
         image2RedCross1Empty.SetActive(false);
         image3RedCross0Empty.SetActive(false);
     }
+
+    public void TurnOffMuzzleFlash()
+    {
+        muzzleFlash.SetActive(false);
+    }
+
+
 }
